@@ -15,9 +15,6 @@ class CarController {
                 await firebase.file(img_name).createWriteStream().end(req.files.image.data)
             }
 
-
-
-
             const data = await Car.create({ name, category, price, status, image: image_url })
             res.status(201).json(data)
         } catch (err) {
@@ -98,7 +95,6 @@ class CarController {
             res.status(500).json(err)
         }
     }
-
 }
 
 module.exports = CarController
