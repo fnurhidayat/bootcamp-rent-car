@@ -1,5 +1,7 @@
 const { Car } = require('../../models')
 const firebase = require('../../helpers/firebase')
+require('dotenv').config()
+
 
 class CarController {
     static async addCarr(req, res) {
@@ -11,8 +13,9 @@ class CarController {
             } else {
                 let image = req.files.image;
                 let img_name = `${Number(new Date())}-${image.name}`
-                image_url = `https://firebasestorage.googleapis.com/v0/b/rent-car-507f6.appspot.com/o/${img_name}?alt=media`
-                await firebase.file(img_name).createWriteStream().end(req.files.image.data)
+                img_name = img_name.replace(/ /g, "_")
+                image_url = `https://firebasestorage.googleapis.com/v0/b/${process.env.UPLOADURL}/o/cars%2F${img_name}?alt=media`
+                await firebase.file(`cars/${img_name}`).createWriteStream().end(req.files.image.data)
             }
 
             const data = await Car.create({ name, category, price, status, image: image_url })
@@ -50,8 +53,9 @@ class CarController {
             } else {
                 let image = req.files.image;
                 let img_name = `${Number(new Date())}-${image.name}`
-                image_url = `https://firebasestorage.googleapis.com/v0/b/rent-car-507f6.appspot.com/o/${img_name}?alt=media`
-                await firebase.file(img_name).createWriteStream().end(req.files.image.data)
+                image_name = image_name.replace(/ /g, "_")
+                image_url = `https://firebasestorage.googleapis.com/v0/b/${process.env.UPLOADURL}/o/cars%2F${img_name}?alt=media`
+                await firebase.file(`cars/${img_name}`).createWriteStream().end(req.files.image.data)
             }
 
 
