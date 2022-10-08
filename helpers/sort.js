@@ -1,8 +1,13 @@
-const parseSortFromRequest = (req) => {
+const parseSortFromRequest = (req, allowedSortMap = {}) => {
   let { sort } = req.query;
   if (!sort) return null;
   sort = sort.replace(/\s/g, "");
-  const [column, direction] = sort.split(":");
+  const [col, direction] = sort.split(":");
+
+  const column = allowedSortMap[col];
+
+  if (!column) return null;
+
   return { column, direction };
 };
 

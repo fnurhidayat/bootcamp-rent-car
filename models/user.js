@@ -16,6 +16,27 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
   }
+  /**
+   * @swagger
+   * components:
+   *   schemas:
+   *     User:
+   *       type: object
+   *       properties:
+   *         id:
+   *           type: number
+   *           format: int32
+   *           example: 1
+   *         email:
+   *           type: string
+   *           format: email
+   *           example: fain@bcr.io
+   *         role:
+   *           type: string
+   *           enum:
+   *           - Admin
+   *           - Customer
+   */
   User.init(
     {
       email: {

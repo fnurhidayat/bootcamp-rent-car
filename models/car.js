@@ -15,6 +15,53 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
   }
+  /**
+   * @swagger
+   * components:
+   *   schemas:
+   *     Car:
+   *       type: object
+   *       properties:
+   *         id:
+   *           type: number
+   *           format: int32
+   *           example: 1
+   *         name:
+   *           type: string
+   *           example: Toyota Avanza
+   *         category:
+   *           type: string
+   *           enum:
+   *           - small
+   *           - medium
+   *           - large
+   *           example: medium
+   *         price:
+   *           type: number
+   *           format: int32
+   *           example: 100000
+   *         status:
+   *           type: boolean
+   *           example: false
+   *         start_rent_at:
+   *           type: string
+   *           format: date
+   *           example: 2022-01-01
+   *         finish_rent_at:
+   *           type: string
+   *           format: date
+   *           example: 2022-01-02
+   *         image:
+   *           type: string
+   *           format: uri
+   *           example: https://upload.wikimedia.org/wikipedia/commons/0/0d/2019_Toyota_Avanza_1.3_G_F653RM_%2820200228%29.jpg
+   *         createdAt:
+   *           type: string
+   *           format: date-time
+   *         updateAt:
+   *           type: string
+   *           format: date-time
+   */
   Car.init(
     {
       name: DataTypes.STRING,

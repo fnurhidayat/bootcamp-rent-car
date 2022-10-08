@@ -18,7 +18,7 @@ const toOffsetBasedPagination = ({ page = 1, pageSize = 10 }) => {
   return { limit, offset };
 };
 
-const toPageCount = ({ pageSize, count }) => Math.floor(count / pageSize);
+const toPageCount = ({ pageSize, count }) => Math.ceil(count / pageSize);
 
 module.exports = {
   parsePaginationFromRequest,
