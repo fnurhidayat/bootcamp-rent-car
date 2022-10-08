@@ -1,12 +1,14 @@
-const express = require('express').Router
-const router = express()
-const CarController = require('../../controllers/Admin/car')
+const express = require("express").Router;
+const router = express();
+const CarController = require("../../controllers/Admin/car");
 
 /**
  * @swagger
  * /admin/car:
  *  post:
  *   description: Add a New Car
+ *   tags:
+ *   - Admin
  *   requestBody:
  *    content:
  *     multipart/form-data:
@@ -38,25 +40,29 @@ const CarController = require('../../controllers/Admin/car')
  *    201:
  *     description: success
  */
-router.post('/', CarController.addCarr)
+router.post("/", CarController.addCarr);
 /**
  * @swagger
  * /admin/car:
  *  get:
  *   description: Fetch All Cars
+ *   tags:
+ *   - Admin
  *   responses:
  *    200:
  *     description: success
  */
-router.get('/', CarController.getCars)
+router.get("/", CarController.getCars);
 /**
  * @swagger
  * /admin/car/{id}:
  *  get:
  *   description: Fetch Car By Id
+ *   tags:
+ *   - Admin
  *   parameters:
  *    - in: path
- *      name: id  
+ *      name: id
  *      required: true
  *      schema:
  *       type: integer
@@ -65,15 +71,17 @@ router.get('/', CarController.getCars)
  *    200:
  *     description: success
  */
-router.get('/:id', CarController.getCarById)
+router.get("/:id", CarController.getCarById);
 /**
  * @swagger
  * /admin/car/{id}:
  *  put:
  *   description: Update Car By Id
+ *   tags:
+ *   - Admin
  *   parameters:
  *    - in: path
- *      name: id  
+ *      name: id
  *      required: true
  *      schema:
  *       type: integer
@@ -111,12 +119,14 @@ router.get('/:id', CarController.getCarById)
  *    404:
  *     description: Not Found Car
  */
-router.put('/:id', CarController.editCar)
+router.put("/:id", CarController.editCar);
 /**
  * @swagger
  * /admin/car/{id}:
  *  delete:
  *   description: Delete Car By Id
+ *   tags:
+ *   - Admin
  *   parameters:
  *    - in: path
  *      name: id   # Note the name is the same as in the path
@@ -130,6 +140,6 @@ router.put('/:id', CarController.editCar)
  *    404:
  *     description: Not Found Car
  */
-router.delete('/:id', CarController.deleteCar)
+router.delete("/:id", CarController.deleteCar);
 
-module.exports = router
+module.exports = router;
