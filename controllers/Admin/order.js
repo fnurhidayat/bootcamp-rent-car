@@ -1,5 +1,14 @@
 const e = require("express");
-const { Car, Order, User } = require("../../models");
+const { QueryTypes } = require("sequelize");
+const { Car, Order, User, sequelize } = require("../../models");
+
+const REPORT_PER_MONTH_QUERY = `
+SELECT TO_CHAR(day, 'YYYY-MM-DD') AS day,
+      (SELECT COUNT(*) FROM "Orders"
+        WHERE start_rent_at = day::date
+        AND status IS TRUE) AS "orderCount"
+FROM generate_series(date:from, :until, '1 day') AS day
+`;
 
 class OrderController {
   static async getOrders(req, res) {
@@ -132,6 +141,30 @@ class OrderController {
       }
     } catch (err) {
       res.status(500).json(err);
+    }
+  }
+
+  static async getReportPerMonth(req, res) {
+    try {
+      const reports = await sequelize.query(REPORT_PER_MONTH_QUERY, {
+        replacements: {
+          from: req.query.from,
+          until: req.query.until,
+        },
+        type: QueryTypes.SELECT,
+      });
+
+      res.status(200).json(
+        reports.map((report) => ({
+          day: report.day,
+          orderCount: Number(report.orderCount),
+        }))
+      );
+    } catch (err) {
+      res.status(500).json({
+        name: "Internal server error",
+        message: err.message,
+      });
     }
   }
 }

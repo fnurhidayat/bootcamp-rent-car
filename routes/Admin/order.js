@@ -1,5 +1,6 @@
 const express = require("express").Router;
 const router = express();
+const authentication = require("../../middlewares/authentication");
 const OrderController = require("../../controllers/Admin/order");
 
 /**
@@ -14,6 +15,38 @@ const OrderController = require("../../controllers/Admin/order");
  *     description: success
  */
 router.get("/", OrderController.getOrders);
+
+/**
+ * @swagger
+ * /admin/order/reports:
+ *  get:
+ *   description: Get order reports by date
+ *   parameters:
+ *    - in: query
+ *      name: from
+ *      required: true
+ *      schema:
+ *       type: string
+ *       format: date
+ *       example: 2022-01-01
+ *    - in: query
+ *      name: until
+ *      required: true
+ *      schema:
+ *       type: string
+ *       format: date
+ *       example: 2022-01-31
+ *   tags:
+ *   - Admin
+ *   responses:
+ *    200:
+ *     description: success
+ */
+router.get(
+  "/reports",
+  authentication.serverAuth,
+  OrderController.getReportPerMonth
+);
 
 /**
  * @swagger
