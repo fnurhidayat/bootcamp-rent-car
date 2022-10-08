@@ -1,12 +1,14 @@
-const express = require('express').Router
-const router = express()
-const UserController = require('../../controllers/Admin/user')
+const express = require("express").Router;
+const router = express();
+const UserController = require("../../controllers/Admin/user");
 
 /**
  * @swagger
  * /admin/auth/register:
  *  post:
  *   description: Add a New Car
+ *   tags:
+ *   - Admin
  *   requestBody:
  *    content:
  *     application/json:
@@ -30,13 +32,15 @@ const UserController = require('../../controllers/Admin/user')
  *    400:
  *     description: Email Already Exists.
  */
-router.post('/register', UserController.register)
+router.post("/register", UserController.register);
 
 /**
  * @swagger
  * /admin/auth/login:
  *  post:
  *   description: Add a New Car
+ *   tags:
+ *   - Admin
  *   requestBody:
  *    content:
  *     application/json:
@@ -59,6 +63,6 @@ router.post('/register', UserController.register)
  *    400:
  *     description: Password was Wrong.
  */
-router.post('/login', UserController.login)
+router.post("/login", UserController.login);
 
-module.exports = router
+module.exports = router;
