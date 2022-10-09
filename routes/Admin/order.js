@@ -11,6 +11,8 @@ const OrderController = require("../../controllers/Admin/order");
  *     deprecated: true
  *     summary: List Orders
  *     operationId: adminListOrders
+ *     security:
+ *       - AdminAccessToken: []
  *     tags:
  *       - Admin / Order
  *     responses:
@@ -91,6 +93,8 @@ router.get(
  *     description: Get Order
  *     summary: Get Order
  *     operationId: adminGetOrder
+ *     security:
+ *       - AdminAccessToken: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -124,6 +128,8 @@ router.get("/:id", OrderController.getOrderById);
  *     description: Change Order Status
  *     summary: Change Order Status
  *     operationId: adminChangeOrderStatus
+ *     security:
+ *       - AdminAccessToken: []
  *     tags:
  *     - Admin / Order
  *     parameters:
@@ -162,6 +168,8 @@ router.patch("/:id", OrderController.changeStatus);
  *     operationId: adminDeleteOrder
  *     description: Delete Order
  *     summary: Delete Order
+ *     security:
+ *       - AdminAccessToken: []
  *     tags:
  *       - Admin / Order
  *     parameters:

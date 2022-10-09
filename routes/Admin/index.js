@@ -8,8 +8,8 @@ const routerOrderV2 = require("./v2/order");
 const authentication = require("../../middlewares/authentication");
 
 router.use("/auth", routerUser);
-router.use("/car", routerCar);
-router.use("/order", routerOrder);
+router.use("/car", authentication.serverAuth, routerCar);
+router.use("/order", authentication.serverAuth, routerOrder);
 router.use("/v2/car", authentication.serverAuth, routerCarV2);
 router.use("/v2/order", authentication.serverAuth, routerOrderV2);
 
