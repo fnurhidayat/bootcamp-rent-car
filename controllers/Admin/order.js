@@ -7,7 +7,7 @@ SELECT TO_CHAR(day, 'YYYY-MM-DD') AS day,
       (SELECT COUNT(*) FROM "Orders"
         WHERE start_rent_at = day::date
         AND status IS TRUE) AS "orderCount"
-FROM generate_series(date:from, :until, '1 day') AS day
+FROM generate_series(date :from, :until, '1 day') AS day
 `;
 
 class OrderController {
