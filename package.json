@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "develop": "nodemon index.js",
+    "db:migrate": "sequelize db:migrate",
     "setup": "sequelize db:create && sequelize db:migrate && sequelize db:seed:all",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
