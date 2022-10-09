@@ -22,7 +22,10 @@ class authentication {
         next();
       }
     } catch (err) {
-      res.status(500).json(err);
+      res.status(401).json({
+        name: "unauthorized",
+        message: `you don't have access token`,
+      });
     }
   }
   static async clientAuth(req, res, next) {
@@ -45,7 +48,10 @@ class authentication {
         next();
       }
     } catch (err) {
-      res.status(500).json(err);
+      res.status(401).json({
+        name: "unauthorized",
+        message: `you don't have access token`,
+      });
     }
   }
 }
