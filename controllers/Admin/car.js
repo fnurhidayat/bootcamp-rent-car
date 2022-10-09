@@ -60,11 +60,11 @@ class CarController {
         image_url = null;
       } else {
         let image = req.files.image;
-        let img_name = `${Number(new Date())}-${image.name}`;
+        let image_name = `${Number(new Date())}-${image.name}`;
         image_name = image_name.replace(/ /g, "_");
-        image_url = `https://firebasestorage.googleapis.com/v0/b/${process.env.UPLOADURL}/o/cars%2F${img_name}?alt=media`;
+        image_url = `https://firebasestorage.googleapis.com/v0/b/${process.env.UPLOADURL}/o/cars%2F${image_name}?alt=media`;
         await firebase
-          .file(`cars/${img_name}`)
+          .file(`cars/${image_name}`)
           .createWriteStream()
           .end(req.files.image.data);
       }

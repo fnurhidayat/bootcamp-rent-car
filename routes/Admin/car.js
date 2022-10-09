@@ -8,6 +8,8 @@ const CarController = require("../../controllers/Admin/car");
  *   post:
  *     operationId: createCar
  *     description: Add a New Car
+ *     security:
+ *       - AdminAccessToken: []
  *     tags:
  *     - Admin / Car
  *     requestBody:
@@ -58,6 +60,8 @@ router.post("/", CarController.addCarr);
  *     operationId: listCars
  *     description: List Cars
  *     deprecated: true
+ *     security:
+ *       - AdminAccessToken: []
  *     tags:
  *     - Admin / Car
  *     responses:
@@ -79,6 +83,8 @@ router.get("/", CarController.getCars);
  * /admin/car/{id}:
  *   get:
  *     description: Fetch Car By Id
+ *     security:
+ *       - AdminAccessToken: []
  *     tags:
  *     - Admin / Car
  *     parameters:
@@ -118,6 +124,8 @@ router.get("/:id", CarController.getCarById);
  * /admin/car/{id}:
  *   put:
  *     description: Update Car By Id
+ *     security:
+ *       - AdminAccessToken: []
  *     tags:
  *     - Admin / Car
  *     parameters:
@@ -184,6 +192,8 @@ router.put("/:id", CarController.editCar);
  * /admin/car/{id}:
  *   delete:
  *     description: Delete Car By Id
+ *     security:
+ *       - AdminAccessToken: []
  *     tags:
  *     - Admin / Car
  *     parameters:
