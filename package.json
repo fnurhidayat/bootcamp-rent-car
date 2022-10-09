@@ -11,6 +11,9 @@
   },
   "keywords": [],
   "author": "Enrico Dwidhanto Indrawan <dindrawan@binar.co.id>",
+  "engines": {
+    "node": "16.14"
+  },
   "contributors": [
     "Fikri Rahmat Nurhidayat <fnurhidayat@binar.co.id>"
   ],
