@@ -171,17 +171,23 @@ class OrderController {
           id,
         },
       });
+
       if (data) {
         res.status(200).json({
           name: "Delete Success",
           message: `Order with id = ${id} has been delete`,
         });
+
+        return;
       } else {
         res.status(400).json({
           name: "Not Found",
           message: `Order with id = ${id} is not Found`,
         });
+
+        return;
       }
+
       res.status(200).json(data);
     } catch (err) {
       res.status(500).json(err);

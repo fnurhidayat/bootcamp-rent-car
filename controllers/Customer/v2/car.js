@@ -10,7 +10,7 @@ const { Car } = require("../../../models");
 class CarV2 {
   static async getCars(req, res) {
     try {
-      const { name, minPrice, maxPrice, isRented } = req.query;
+      const { name, minPrice, maxPrice, isRented, category } = req.query;
       const { page, pageSize } = parsePaginationFromRequest(req);
       const { limit, offset } = toOffsetBasedPagination({ page, pageSize });
       const where = {};
@@ -56,6 +56,10 @@ class CarV2 {
             ],
           },
         ];
+      }
+
+      if (!!category) {
+        where.category = category;
       }
 
       const cars = await Car.findAll({
