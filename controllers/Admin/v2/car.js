@@ -10,7 +10,7 @@ const { Car } = require("../../../models");
 class CarV2 {
   static async getCars(req, res) {
     try {
-      const { name, minPrice, maxPrice, isRented = "false" } = req.query;
+      const { name, minPrice, maxPrice, isRented, category } = req.query;
       const { page, pageSize } = parsePaginationFromRequest(req);
       const { limit, offset } = toOffsetBasedPagination({ page, pageSize });
       const where = {};
@@ -42,6 +42,24 @@ class CarV2 {
           { finish_rent_at: { [Op.not]: null } },
           { finish_rent_at: { [Op.gt]: Date.now() } },
         ];
+      }
+
+      if (isRented === "false") {
+        where[Op.and] = [
+          {
+            [Op.or]: [{ status: false }, { status: null }],
+          },
+          {
+            [Op.or]: [
+              { finish_rent_at: null },
+              { finish_rent_at: { [Op.lt]: Date.now() } },
+            ],
+          },
+        ];
+      }
+
+      if (!!category) {
+        where.category = category;
       }
 
       const cars = await Car.findAll({
